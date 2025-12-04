@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student GPA Predictor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-grid">
+      <div>
+        <h1>Student GPA Predictor</h1>
+      </div>
+      <nav class="nav">
+        <a href="#features">What it does</a>
+        <a href="#predict">Predict GPA</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container hero">
+    <section class="left">
+      <div class="card">
+        <h2>Project Highlights</h2>
+        <ul>
+          <li>Measures and estimates student <strong>GPA</strong></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="right">
+      <div class="card">
+        <h2 id="predict">Enter Student Data</h2>
+        <form action="/predict" method="post" class="form-grid">
+          <label for="StudyTimeWeekly">Study time per week (hours)</label>
+          <input type="number" step="any" name="StudyTimeWeekly" id="StudyTimeWeekly" placeholder="e.g. 10">
+
+          <label for="Absences">Absences (days)</label>
+          <input type="number" step="any" name="Absences" id="Absences" placeholder="e.g. 2">
+
+          <label for="ParentalSupport">Parental support (1-5)</label>
+          <input type="number" step="any" name="ParentalSupport" id="ParentalSupport" placeholder="e.g. 3">
+
+          <label for="GradeClass">Grade / Class (numeric)</label>
+          <input type="number" step="any" name="GradeClass" id="GradeClass" placeholder="e.g. 12">
+
+          <div class="full-row">
+            <fieldset>
+              <legend>Activities / Support</legend>
+              <label class="checkbox"><input type="checkbox" name="Tutoring"> Tutoring</label>
+              <label class="checkbox"><input type="checkbox" name="Extracurricular"> Extracurricular</label>
+              <label class="checkbox"><input type="checkbox" name="Sports"> Sports</label>
+              <label class="checkbox"><input type="checkbox" name="Music"> Music</label>
+              <label class="checkbox"><input type="checkbox" name="Volunteering"> Volunteering</label>
+            </fieldset>
+          </div>
+
+          <div class="submit-row full-row">
+            <button type="submit" class="btn">Predict GPA</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>© Haroon Chishti — quick GPA estimates</div>
+  </footer>
+
+</body>
+
+</html>

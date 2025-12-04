@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+
+    <header class="site-header small">
+        <div class="brand">Student Insights</div>
+        <nav class="nav"><a href="/">Home</a></nav>
+    </header>
+
+    <main class="container">
+        <div class="card result">
+            <h2>Predicted GPA: <span class="big">{{ prediction }}</span></h2>
+
+            {% if uncertainty is not none %}
+            <p class="muted">Model uncertainty (ensemble std): {{ '%.3f'|format(uncertainty) }}</p>
+            {% endif %}
+
+            {% if importances %}
+            <section class="importance">
+                <h3>Top Feature Importances</h3>
+                <ul class="importance-list">
+                    {% for name, val in importances[:6] %}
+                    <li>
+                        <div class="imp-row">
+                            <strong>{{ name }}</strong>
+                            <span class="imp-val">{{ '%.3f'|format(val) }}</span>
+                        </div>
+                        <div class="imp-bar">
+                            <div class="imp-fill" style="width: {{ (val * 100)|round(1) }}%"></div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </section>
+            {% endif %}
+
+            <p class="muted small">This is a model estimate. Use with proper discretion.</p>
+
+            <div class="actions">
+                <a href="/" class="btn">Try another</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer small">
+        <div>© Haroon Chishti</div>
+    </footer>
+
+</body>
+
+</html>
